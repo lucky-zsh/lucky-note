@@ -9,7 +9,7 @@ export default defineConfig({
   base:'/lucky-note/',
   builderConfig:{
     output: {
-      assetPrefix: '/',
+      assetPrefix: '/lucky-note/',
     }
   },
   mediumZoom:true,
