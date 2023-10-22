@@ -3,7 +3,7 @@ pageType: home
 
 hero:
   name: LuckyNote
-  text: 深度学习前端知识dd
+  text: 深度学习前端知识
   tagline: LuckyNote tagline
   actions:
     - theme: brand
