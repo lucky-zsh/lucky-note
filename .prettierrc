@@ -1,0 +1,15 @@
+{
+    "jsxSingleQuote": true,
+    "singleAttributePerLine": true,
+    "singleQuote": true,
+    "tabWidth": 4,
+    "trailingComma": "none",
+    "overrides": [
+        {
+          "files": "*.md",
+          "options": {
+            "proseWrap": "preserve"
+          }
+        }
+      ]
+}

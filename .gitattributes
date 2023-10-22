@@ -1,0 +1,6 @@
+
+*.*  text eol=lf
+*.jpg -text
+*.png -text
+*.pdf -text
+*.svg -text
