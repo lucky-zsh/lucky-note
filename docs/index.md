@@ -1,37 +1,28 @@
 ---
 pageType: home
-
 hero:
-  name: LuckyNote
-  text: 深度学习前端知识
-  tagline: LuckyNote tagline
+  name: Lucky Note
+  text: 温故知新，厚积薄发
+  tagline: 希望每个分享都能帮助到一部分人，也希望大家多多支持
   actions:
     - theme: brand
-      text: Quick Start
+      text: 开始
       link: /guide/
     - theme: alt
-      text: Github
+      text: GitHub
       link: https://github.com/web-infra-dev/rspress
-  image:
-    src: /rspress-icon.png
-    alt: LuckyNote Logo
 features:
-  - title: Blazing fast build speed
-    details: The core compilation module is based on the Rust front-end toolchain, providing a more ultimate development experience.
-    icon: 🏃🏻‍♀️
-  - title: Support for MDX content writing
-    details: MDX is a powerful way to write content, allowing you to use React components in Markdown.
-    icon: 📦
-  - title: Built-in full-text search
-    details: Automatically generates a full-text search index for you during construction, providing out-of-the-box full-text search capabilities.
-    icon: 🎨
-  - title: Simpler I18n solution
-    details: With the built-in I18n solution, you can easily provide multi-language support for documents or components.
-    icon: 🌍
-  - title: Static site generation
-    details: In production, it automatically builds into static HTML files, which can be easily deployed anywhere.
-    icon: 🌈
-  - title: Providing multiple custom capabilities
-    details: Through its extension mechanism, you can easily extend theme UI and build process.
-    icon: 🔥
+  - title: ES学习
+    details: 深入ES的原理，不断深入学习，打下坚实的基础
+  - title: TypeScript
+    details: 了解类型的声明和使用，学习如何配置和使用，做好封装，解决声明问题
+  - title: 构建工具
+    details: 学习Webpack，Vite，Rollup等构建工具，能熟练使用，独立开发工具，脚手架等.
+  - title: 代码规范
+    details: 如何使用VScode，Eslint，stylelint 保证代码的统一，能定制化规范.
+  - title: 版本管理
+    details: 深入Git原理，学习和使用，能独立解决各自突发问题，处理团队协作.
+  - title: 网络
+    details: 了解Http，Https等网络知识不断深入
+footer: false
 ---

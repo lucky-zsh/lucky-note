@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
     "jsx": "react-jsx",
+    "jsxImportSource": "react-auto-clsx",
+    "typeRoots": ["node_modules/@types"],
+    "types": ["react", "react-dom"],
     "esModuleInterop": true
-  }
+  },
+  "include": ["**/*.tsx","**/*/.ts"]
 }

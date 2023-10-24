@@ -1,16 +1,17 @@
 [
-  {
-    "text": "Guide",
-    "link": "/guide/",
-    "activeMatch": "/guide/"
-  },
-  {
-    "text": "Hello World",
-    "link": "/hello/",
-    "activeMatch": "/hello/"
-  },
-  {
-    "text": "API",
-    "link": "https://rspress.dev/api/index.html"
-  }
-]
+    {
+      "text": "大前端",
+      "link": "//introduction",
+      "activeMatch": "/guide/"
+    },
+    {
+      "text": "plugin",
+      "link": "/plugin/system/introduction",
+      "activeMatch": "/plugin/"
+    },
+    {
+      "text": "api",
+      "link": "/api/",
+      "activeMatch": "/api/"
+    }
+  ]
