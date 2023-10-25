@@ -20,7 +20,8 @@ module.exports = {
         ecmaFeatures: {
             jsx: true
         },
-        warnOnUnsupportedTypeScriptVersion: true
+        warnOnUnsupportedTypeScriptVersion: true,
+        project: ['./tsconfig.json']
     },
     plugins: ['html', 'react', 'react-hooks', '@typescript-eslint', 'markdown'],
     overrides: [

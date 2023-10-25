@@ -1,10 +1,9 @@
 {
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "jsxImportSource": "react-auto-clsx",
-    "typeRoots": ["node_modules/@types"],
-    "types": ["react", "react-dom"],
-    "esModuleInterop": true
-  },
-  "include": ["**/*.tsx","**/*/.ts"]
+    "compilerOptions": {
+        "jsx": "react-jsx",
+        "typeRoots": ["node_modules/@types"],
+        "types": ["react", "react-dom"],
+        "esModuleInterop": true
+    },
+    "include": ["./rspress.config.ts", "docs/**/*", "src/**/*", "theme/**/*"]
 }

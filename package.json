@@ -1,34 +1,33 @@
 {
-  "name": "lucky-note",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "rspress dev",
-    "build": "rspress build",
-    "preview": "rspress preview"
-  },
-  "dependencies": {
-    "clsx": "^2.0.0",
-    "react": "^18.2.0",
-    "react-auto-clsx": "^1.1.0",
-    "react-dom": "^18.2.0",
-    "rspress": "^1.0.0"
-  },
-  "devDependencies": {
-    "@types/node": "^16",
-    "@types/react": "^18.2.31",
-    "@types/react-dom": "^18.2.14",
-    "@typescript-eslint/eslint-plugin": "^6.8.0",
-    "@typescript-eslint/parser": "^6.8.0",
-    "eslint": "^8.52.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-html": "^7.1.0",
-    "eslint-plugin-markdown": "^3.0.1",
-    "eslint-plugin-prettier": "^5.0.1",
-    "eslint-plugin-react": "^7.33.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "prettier": "^3.0.3",
-    "stylelint": "^15.11.0",
-    "typescript": "^5.2.2"
-  }
+    "name": "lucky-note",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "dev": "cross-env NODE_ENV=development rspress dev",
+        "build": "cross-env NODE_ENV=production rspress build",
+        "preview": "rspress preview"
+    },
+    "dependencies": {
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "rspress": "^1.0.0"
+    },
+    "devDependencies": {
+        "@types/node": "^16",
+        "@types/react": "^18.2.31",
+        "@types/react-dom": "^18.2.14",
+        "@typescript-eslint/eslint-plugin": "^6.8.0",
+        "@typescript-eslint/parser": "^6.8.0",
+        "cross-env": "^7.0.3",
+        "eslint": "^8.52.0",
+        "eslint-config-prettier": "^9.0.0",
+        "eslint-plugin-html": "^7.1.0",
+        "eslint-plugin-markdown": "^3.0.1",
+        "eslint-plugin-prettier": "^5.0.1",
+        "eslint-plugin-react": "^7.33.2",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "prettier": "^3.0.3",
+        "stylelint": "^15.11.0",
+        "typescript": "^5.2.2"
+    }
 }

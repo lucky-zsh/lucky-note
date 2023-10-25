@@ -1,24 +1,16 @@
 import * as path from 'path';
 import { defineConfig } from 'rspress/config';
-
+const isDev = process.env.NODE_ENV === 'development' ? true : false;
 export default defineConfig({
     root: path.join(__dirname, 'docs'),
-    base: '/lucky-note/',
+    base: isDev ? '/' : '/lucky-note/',
     route: {
         include: ["docs/**/*", "src/**/*"]
     },
     builderConfig: {
         output: {
-            assetPrefix: '/lucky-note/',
-        },
-        source: {
-            define: {
-
-            },
-            alias: {
-
-            },
-        },
+            assetPrefix: isDev ? '/' : '/lucky-note/',
+        }
     },
     mediumZoom: true,
     logo: {

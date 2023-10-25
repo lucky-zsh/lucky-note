@@ -1,7 +1,5 @@
 import Theme from 'rspress/theme';
-const HomeLayout = function () {
-    return <div>home</div>;
-};
+import HomeLayout from './home';
 
 export default {
     ...Theme,
