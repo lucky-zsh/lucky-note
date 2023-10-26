@@ -8,14 +8,18 @@
         "preview": "rspress preview"
     },
     "dependencies": {
+        "clsx": "^2.0.0",
         "react": "^18.2.0",
+        "react-auto-clsx": "^1.1.0",
         "react-dom": "^18.2.0",
         "rspress": "^1.0.0"
     },
     "devDependencies": {
+        "@babel/plugin-transform-react-jsx": "^7.22.15",
         "@types/node": "^16",
         "@types/react": "^18.2.31",
         "@types/react-dom": "^18.2.14",
+        "@types/webpack-env": "^1.18.3",
         "@typescript-eslint/eslint-plugin": "^6.8.0",
         "@typescript-eslint/parser": "^6.8.0",
         "cross-env": "^7.0.3",
@@ -28,6 +32,9 @@
         "eslint-plugin-react-hooks": "^4.6.0",
         "prettier": "^3.0.3",
         "stylelint": "^15.11.0",
-        "typescript": "^5.2.2"
+        "svg-sprite-loader": "^6.0.11",
+        "svgo-loader": "^4.0.0",
+        "typescript": "^5.0.4",
+        "typescript-plugin-css-modules": "^5.0.2"
     }
 }

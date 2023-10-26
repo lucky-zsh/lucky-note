@@ -1,9 +1,23 @@
 {
     "compilerOptions": {
         "jsx": "react-jsx",
-        "typeRoots": ["node_modules/@types"],
-        "types": ["react", "react-dom"],
-        "esModuleInterop": true
+        "jsxImportSource": "react-auto-clsx",
+        "typeRoots": ["node_modules/@types", "./types"],
+        "types": ["react", "react-dom", "webpack-env"],
+        "esModuleInterop": true,
+        "baseUrl": ".",
+        "paths": {
+            "@/types/*": ["./types/*"],
+            "@/assets/*": ["./assets/*"],
+            "@/ui/*": ["./src/*"],
+            "@/theme/*": ["./theme/*"]
+        }
     },
-    "include": ["./rspress.config.ts", "docs/**/*", "src/**/*", "theme/**/*"]
+    "include": [
+        "./rspress.config.ts",
+        "docs/**/*",
+        "src/**/*",
+        "theme/**/*",
+        "types/**/*"
+    ]
 }
