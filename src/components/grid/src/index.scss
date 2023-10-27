@@ -1,0 +1,118 @@
+.k_row {
+    display: flex;
+    flex-flow: row wrap;
+
+    &_align_start {
+        align-items: flex-start;
+    }
+
+    &_align_center {
+        align-items: center;
+    }
+
+    &_align_end {
+        align-items: flex-end;
+    }
+
+    &_align_stretch {
+        align-items: stretch;
+    }
+
+    &_justify_start {
+        justify-content: flex-start;
+    }
+
+    &_justify_center {
+        justify-content: center;
+    }
+
+    &_justify_end {
+        justify-content: flex-end;
+    }
+
+    &_justify_space-around {
+        justify-content: space-around;
+    }
+
+    &_justify_space-between {
+        justify-content: space-between;
+    }
+}
+
+.k_col {
+    position: relative;
+    box-sizing: border-box;
+
+    &-gutter {
+        &:last-child {
+            padding-right: 0 !important;
+        }
+
+        &:first-child {
+            padding-left: 0 !important;
+        }
+    }
+}
+
+@mixin span($adaptation) {
+    @for $i from 1 through 24 {
+        .k_col_#{$i} {
+            display: block;
+            flex: 0 0 calc(100% / 24) * $i;
+            width: calc(100% / 24) * $i;
+        }
+        .k_col_offset_#{$i} {
+            margin-left: calc(100% / 24) * $i;
+        }
+        .k_col_order_#{$i} {
+            order: $i;
+        }
+        .k_col_pull_#{$i} {
+            right: calc(100% / 24) * $i;
+        }
+        .k_col_push_#{$i} {
+            left: calc(100% / 24) * $i;
+        }
+        .k_col_#{$adaptation}_#{$i} {
+            display: block;
+            flex: 0 0 calc(100% / 24) * $i;
+            width: calc(100% / 24) * $i;
+        }
+        .k_col_#{$adaptation}_offset_#{$i} {
+            margin-left: calc(100% / 24) * $i;
+        }
+        .k_col_#{$adaptation}_order_#{$i} {
+            order: $i;
+        }
+        .k_col_#{$adaptation}_pull_#{$i} {
+            right: calc(100% / 24) * $i;
+        }
+        .k_col_#{$adaptation}_push_#{$i} {
+            left: calc(100% / 24) * $i;
+        }
+    }
+}
+@include span(xs);
+@media (min-width: 576px) {
+    @include span(sm);
+}
+
+@media (min-width: 768px) {
+    @include span(md);
+}
+
+@media (min-width: 992px) {
+    @include span(lg);
+}
+
+@media (min-width: 1200px) {
+    @include span(xl);
+}
+
+@media (min-width: 1600px) {
+    @include span(xxl);
+}
+
+@media (min-width: 2000px) {
+    @include span(xxxl);
+}

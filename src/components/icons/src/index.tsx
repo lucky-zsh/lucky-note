@@ -1,8 +1,8 @@
 import { FC, CSSProperties } from 'react';
-
 import { setSize } from '@/ui/utils';
 import { CSSValue, IComponent } from '@/types/index';
 import { useDefaultProps } from '@/ui/hooks/default-props';
+import './index.scss';
 export interface KSvgIconProps extends IComponent {
     icon: string; // svg文件名
     className?: CSSValue;
@@ -20,12 +20,12 @@ const SvgIcon: FC<KSvgIconProps> = (props) => {
     return (
         <svg
             aria-hidden='true'
-            className={className}
+            className={['k_icon', className]}
             style={{ ...setSize(width || size, height || size), ...style }}
             {...restProps}
         >
             <use
-                xlinkHref={'#icon-' + icon}
+                xlinkHref={`#icon-${icon}`}
                 fill={color}
             />
         </svg>

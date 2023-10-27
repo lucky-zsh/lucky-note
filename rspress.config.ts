@@ -2,6 +2,7 @@ import * as path from 'path';
 import { defineConfig } from 'rspress/config';
 const isDev = process.env.NODE_ENV === 'development' ? true : false;
 const publicPath = isDev ? '/' : '/lucky-note/';
+// import SpriteLoaderPlugin from "svg-sprite-loader/plugin"
 export default defineConfig({
     root: path.join(__dirname, 'docs'),
     base: publicPath,
@@ -12,19 +13,20 @@ export default defineConfig({
         output: {
             assetPrefix: publicPath,
             cssModules: {
-                auto: /\.scss$/,
+                auto: /theme((\\|\/).+)+\.scss$/,
             },
             cssModuleLocalIdentName: "t_[local]_[hash:6]",
-
+            disableSvgr: false,
         },
+
         source: {
             alias: {
                 '@/assets': path.join(__dirname, './assets'),
                 '@/theme': path.join(__dirname, './theme'),
                 '@/ui': path.join(__dirname, './src'),
                 '@/types': path.join(__dirname, './types')
-
             },
+
         },
         tools: {
 
@@ -40,79 +42,7 @@ export default defineConfig({
             },
             sass: {
                 additionalData: "@use '@/assets/styles/index.scss' as *;"
-            },
-            rspack: (_, { addRules }) => {
-                addRules({
-                    test: /\.svg$/,
-                    exclude: [/node_modules/],
-                    use: [
-                        {
-                            loader: 'svg-sprite-loader',
-                            options: {
-                                symbolId: 'icon-[name]',
-                                outputPath: `/assets/icons/`,
-                                publicPath: publicPath
-                            }
-                        },
-                        {
-                            loader: 'svgo-loader',
-                            options: {
-                                plugins: [
-                                    {
-                                        name: 'removeAttrs',
-                                        params: {
-                                            attrs: '(fill|stroke)'
-                                        }
-                                    }
-                                ]
-                            }
-                        }
-                    ]
-                    // oneOf: [
-                    //     {
-                    //         test: /assets(\\|\/)colour(\\|\/).*\.(svg)$/,
-                    //         exclude: [/node_modules/],
-                    //         use: [
-                    //             {
-                    //                 loader: 'svg-sprite-loader',
-                    //                 options: {
-                    //                     symbolId: 'icon-[name]',
-                    //                     outputPath: `/assets/colour`,
-                    //                     publicPath: publicPath
-                    //                 }
-                    //             }
-                    //         ]
-                    //     },
-                    //     {
-                    //         test: /assets(\\|\/)icons(\\|\/).*\.svg$/,
-                    //         exclude: [/node_modules/],
-                    //         use: [
-                    //             {
-                    //                 loader: 'svg-sprite-loader',
-                    //                 options: {
-                    //                     symbolId: 'icon-[name]',
-                    //                     outputPath: `/assets/icons/`,
-                    //                     publicPath: publicPath
-                    //                 }
-                    //             },
-                    //             {
-                    //                 loader: 'svgo-loader',
-                    //                 options: {
-                    //                     plugins: [
-                    //                         {
-                    //                             name: 'removeAttrs',
-                    //                             params: {
-                    //                                 attrs: '(fill|stroke)'
-                    //                             }
-                    //                         }
-                    //                     ]
-                    //                 }
-                    //             }
-                    //         ]
-                    //     }
-                    // ]
-                });
-            },
+            }
         },
 
 
