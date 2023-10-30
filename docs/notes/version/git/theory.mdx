@@ -1,0 +1,308 @@
+# Git 深入学习
+
+## 1. 介绍
+
+**定义：** Git 是一个免费和开源的分布式版本控制系统,旨在以速度和效率处理从小型到大型项目的所有内容.
+
+**地址：**[安装链接](https://git-scm.com/book/zh/v2/%e8%b5%b7%e6%ad%a5-%e5%ae%89%e8%a3%85-Git)
+
+安装请根据官方文档指示进行安装，可通过如下命令查看版本号：确定是否安装成功
+
+``` bash
+$ git -v
+git version 2.42.0.windows.2
+
+```
+## 2. 本地仓库
+
+我们介绍一下git的原理，暂时不涉及远程仓库，分别从创建，原理以及配置，基础操作来逐步研究git。
+
+### 2.1. 创建仓库
+
+有两种取得 Git 项目仓库的方法。第一种是在现存的目录下，通过导入所有文件来创建 新的 Git 仓库。第二种是从已有的 Git 仓库克隆出一个新的镜像仓库来。
+2.1 获取git项目仓库
+
+1. **git init**
+
+通过 git init xxx(项目名称) 进行项目的创建，它会在工作去创建隐藏的目录.git即git版本库，又叫仓库，同样也可以新建一个文件夹，进入，右键打开Git Bash 执行 git init 同样可以创建一个.git的子目录，这个子目录含有你初始化的 Git 仓库中所有的必须文件，这些文件是 Git 仓库的骨干，但是，在这个时候，我们仅仅是做了一个初始化的操作，你的项目里的文件还没有被跟踪, 比如我们创建了一个git-demo
+目录，进入该目录执行git init
+
+```bash
+$cd git-demo
+$git init
+
+//或者
+$git init git-demo
+$cd git-demo
+
+```
+仓库创建后，可以通过 find 命令查看.git的目录结构：
+
+```bash
+$ find
+```
+
+```
+.git
+├── config
+├── description
+├── HEAD
+├── hooks
+│    ├── applypatch-msg.sample
+│    ├── ...
+│    └── update.sample
+├── info
+│    └── exclude
+├── objects
+│     ├── info
+│     └── pack
+├── refs
+│     ├── heads
+│     └── tags
+
+```
+当然git clone 也可以初始化一个仓库如下：
+
+2. **git clone**
+
+使用git clone 复制远程仓库的所有代码和历史记录，并在本地创建一个与远程仓库相同的仓库副本，该操作也会将git版本库也就是.git 目录生成到工作区的根目录中
+
+**基本使用的命令**
+
+```bash
+// clone 默认分支
+$ git clone https://xxxx.git(仓库远程地址)
+// clone 指定分支
+$ git clone -b 分支名 仓库远程地址
+```
+
+### 2.2 仓库分析
+本地有了git仓库之后，接下来就分析一下git仓库中工作区，暂存区和版本库的关系，以及他们是如何配合工作的，下面我们以git-demo项目为例子来分析：
+
+1. **工作区**
+
+通俗点说简洁点说就是我们写代码的地方，就是git-demo下中我们的工作的目录和文件，我们可以对其进行增删改查的操作。
+比如我们在工作区创建一个文本文件：
+
+```bash
+zsh@lucky MINGW64 /d/sharefile/git-demo (master)
+$ touch index.txt
+
+```
+此时暂存区是空的，我们通过git ls-files 查看暂存区
+
+> git ls-files  显示索引和工作树中的文件信息
+
+如下命令，可以看出此时暂存区并没有内容
+
+```bash
+$ git ls-files
+
+zsh@lucky MINGW64 /d/sharefile/git-demo (master)
+
+```
+之后我们看一下目前文件状态：可以看出git 给我们标记的是未跟踪，出现`Changes to be committed`显示文件已暂存，出现这个Changes not staged for commit说明文件被修改了但没有暂存，并建议需要使用git add 将其添加到暂存区。
+
+```bash
+$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        index.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+那接下来我们来看来了解一下暂存区。
+
+
+2. **暂存区**
+
+暂存区英文叫 stage 或 index。一般存放在 .git 目录下的 index 文件（.git/index）中，所以我们把暂存区有时也叫作索引（index），可以得知.git/index是存放暂存区
+的内容，那数据放在哪呢？我们知道.git/objects 类似数据库，那是否存在此处呢？
+
+查看.git/objects目录
+```bash
+$ find .git/objects
+.git/objects
+.git/objects/info
+.git/objects/pack
+```
+将index.txt 文件添加到暂存区
+```bash
+$ git add index.txt
+```
+再次查看.git/objects
+```bash
+$ find .git/objects
+.git/objects
+.git/objects/e6
+.git/objects/e6/9de29bb2d1d6434b8b29ae775ad8c2e48c5391
+.git/objects/info
+.git/objects/pack
+```
+目录如上代码所示，多了一个hash文件，接着我们查看该文件；
+> git cat-file   提供资源库对象的内容或类型和大小信息
+
+```bash
+$ git cat-file e69de29bb2d1d6  -t
+blob
+```
+因为文件没有内容，我们为index.txt 添加一些文字 "我是index.txt内容"，并查看.git/objects目录
+
+```bash
+$vim index.txt
+$git add index.txt
+$ find .git/objects
+.git/objects
+.git/objects/e6
+.git/objects/e6/9de29bb2d1d6434b8b29ae775ad8c2e48c5391
+.git/objects/f0
+.git/objects/f0/5c340cf1277f59ad51b8f2d8b053dde12fd4d6
+.git/objects/info
+.git/objects/pack
+```
+我们查看另一个hash文件的内容
+```bash
+$ git cat-file f05c340cf1277f59 -p
+我是index.txt内容
+
+```
+从上面我们可以看出暂存区内容是存放在.git/objects文件夹中，然后查看.git/index 索引文件也就是暂存区的内容,可以发现hash值为什么存放在.git/objects中
+
+```bash
+$ git ls-files -s
+100644 f05c340cf1277f59ad51b8f2d8b053dde12fd4d6 0       index.txt
+```
+3. **文件状态**
+
+对一个项目，工作目录下所有的文件无外乎两种状态，已跟踪和未跟踪。
+
+**已跟踪**
+
+已跟踪的文件是指那些被纳入了版本控制的文件，在上一次快照中有它们的记录，在工作一段时间后， 它们的状态可能是未修改，已修改或已放入暂存区。简而言之，已跟踪的文件就是 Git 已经知道的文件
+
+**未跟踪**
+
+工作目录中除已跟踪文件外的其它所有文件都属于未跟踪文件，它们既不存在于上次快照的记录中，也没有被放入暂存区
+我们可以通过git status 来查看文件的状态，来了解工作区和暂存区文件的状态变化：
+
+**ignored**
+被git管理工具可以忽略的文件，git会对工程文件夹内的gitignore文件做检索，如果找到该文件，则根据gitignore指定的文件、文件夹，执行忽略并放弃跟踪范围内的文件。
+
+我们分两种情况来讲解：
+
+
+1. 未提交的文件忽略
+
+- 新建文件test.txt 文件
+```bash
+$ touch test.txt
+```
+- 新建.gitignore 文件并添加内容"test.txt",忽略掉这个文件，并将所有的文件添加到暂存区，正常来说test.txt应该也在
+暂存区，我们再查看一下暂存区到底有哪些文件
+```bash
+$touch .gitignore
+$vim .gitignore
+$ git add .
+```
+- 查看暂存区文件,如下所示，test.txt 并没有被添加到暂存区，该文件被git 忽略了，不会将其纳入版本库中跟踪
+```bash
+$ git ls-files -s
+100644 541cb64f9b85000af670c5b925fa216ac6f98291 0       .gitignore
+100644 f05c340cf1277f59ad51b8f2d8b053dde12fd4d6 0       index.txt
+```
+- 也可以通过git status 查看文件状态
+```bash
+$ git status --ignored
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   .gitignore
+        new file:   index.txt
+
+Ignored files:
+  (use "git add -f <file>..." to include in what will be committed)
+        test.txt
+```
+2. 已提交的文件忽略
+
+大家可能遇到这个场景：在使用gittignor 文件添加忽略文件时，明明已经添加到.gitignore文件中了，却没有效果，添加到.gitignore文件还好被git跟踪到变化。
+那如何处理这种场景呢？我们先对文件进行提交,然后再进行查看
+
+- 先将被添加的文件或文件夹从仓库中移除
+```bash
+git rm index.txt
+```
+- 但上面的操作会把本地工程目录中文件也删除掉，如果想把文件从暂存区域移除，但仍然希望保留在当前工作目录中，换句话说，仅是从跟踪清单中删除，使用 --cached 选项即可
+```bash
+$ git rm -r --cached index.txt
+```
+然后对git 进行commit操作，操作后我们修改xxx文件内容，在修改内容就会发现并不会git 跟踪了
+```bash
+$ git status --ignored
+On branch master
+Ignored files:
+  (use "git add -f <file>..." to include in what will be committed)
+        index.txt
+        test.txt
+
+nothing to commit, working tree clean
+```
+
+
+
+后续我们可以通过`git status `来查看文件的状态，来了解文件在工作区和暂存区文件的状态变化：这次我们使用了git status 命令，其实，其还有git status -s 或git status --short 来简化信息输出，其中新添加的未跟踪文件前面有 ?? 标记，新添加到暂存区中的文件前面有 A 标记，修改过的文件前面有 M 标记。 输出中有两栏，左栏指明了暂存区的状态，右栏指明了工作区的状态
+| 状态码   | 描述 |
+| ------- | --------------|
+| ''      | unmodified           |
+| M       | modified             |
+| A       | added                |
+| D       | deleted              |
+| R       | renamed              |
+| C       | copied               |
+| U       | updated but unmerged |
+| ??      | untracked            |
+| !!      | ignored              |
+
+
+
+1. **版本库介绍**
+
+**info**
+
+目录保存了一份不希望在 .gitignore 文件中管理的忽略模式 (ignored patterns) 的全局 可执行文件
+
+**hooks:**
+
+钩⼦都被存储在 Git ⽬录下的 hooks ⼦⽬录中。 也即绝⼤部分项⽬中的 .git/hooks 。 当你⽤ git init
+初始化⼀个新版本库时，Git 默认会在这个⽬录中放置⼀些⽰例脚本。这些脚本除了本⾝可 以被调⽤
+外，它们还透露了被触发时所传⼊的参数
+
+**objects:**
+
+对象库是Git版本库实现的心脏，它包含你的原始数据文件和所有的日志消息、作者信息、日期，以及其他用来重建项目任意版本或分支的信息git放在对象库里的对象只有四种类型：块（blob）、目录树（tree）、提交（commit）、标签（tag），这四种原子对象构成Git高层数据结构的基础。
+  - 块（blob）：文件的每一个版本表示为一个块（blob）
+  - 目录树（tree）：一个目录树对象代表一层目录信息，它记录blob标志符、路径名和在一个目录里所有文件的一些元数据。它也可以递归引用其他目录树或子树对象，从而建立一个包含文件和子目录的完整层次结构。
+  - 提交（commit）：一个提交对象保存版本库中每一次变化的元数据，包括作者、提交者、提交日期和日志消息。每一个提交对象指向一个目录树对象，这个目录树对象在一张完整的快照中捕获提交时版本库的状态
+  - 标签（tag）：一个标签对象分配一个任意的且人类可读的名字给一个特定的对象，通常是一个提交对象
+
+**refs** ⽬录存储指向数据 (分⽀) 的提交对象的指针
+
+⾸先进⼊⽂件中查看refs 有哪些内容，如下图所⽰，heads⽂件中存放的是我们的分⽀，tags存放的是
+我们的⾥程碑，也就是我们打的tag
+
+**index:**
+
+索引是一个临时的、动态的二进制文件，它描述整个版本库的目录结构，像一个虚拟的工作区，在这个虚拟工作区的目录树中，记录了文件名和文件的状态信息（时间戳和文件长度等），文件的内容没有存储在其中，而是保存在Git对象库 .git/objects目录中，文件索引建立了文件和对象库中对象实体之间的对应
+
+**HEAD**
+
+**refs**
+
+储的是分支，也就是引用

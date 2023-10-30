@@ -5,8 +5,8 @@ import GithubIcon from '@/assets/icons/github.svg';
 import WxaIcon from '@/assets/icons/wxa.svg';
 import NugIcon from '@/assets/icons/nug.svg';
 import CsvgIcon from '@/assets/icons/csdn.svg';
-import { NoteList } from './constant';
-import { KCol, KRow } from '@/ui/index';
+// import { NoteList } from './constant';
+// import { KCol, KRow } from '@/ui/index';
 
 // import { useNavigate } from 'rspress/runtime';
 const HomeLayout = function () {
@@ -51,7 +51,7 @@ const HomeLayout = function () {
                     ></IntroImg>
                 </div>
             </div>
-            <div className={$style.home_note}>
+            {/* <div className={$style.home_note}>
                 {NoteList.map((item, index) => {
                     return (
                         <div
@@ -92,7 +92,7 @@ const HomeLayout = function () {
                         </div>
                     );
                 })}
-            </div>
+            </div> */}
         </div>
     );
 };

@@ -3,7 +3,7 @@
         "jsx": "react-jsx",
         "jsxImportSource": "react-auto-clsx",
         "typeRoots": ["node_modules/@types", "./types"],
-        "types": ["react", "react-dom", "webpack-env"],
+        "types": ["react", "react-dom"],
         "esModuleInterop": true,
         "baseUrl": ".",
         "paths": {

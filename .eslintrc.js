@@ -25,7 +25,7 @@ module.exports = {
     plugins: ['html', 'react', 'react-hooks', '@typescript-eslint', 'markdown'],
     overrides: [
         {
-            files: ['**/*.md'],
+            files: ['**/*.md',"**/*.mdx"],
             processor: 'markdown/markdown'
         },
         {
