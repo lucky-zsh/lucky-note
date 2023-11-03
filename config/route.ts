@@ -30,6 +30,24 @@ export const navList = [
             }
         ]
 
+    },
+    {
+        text: "工具插件",
+        items:[
+            {
+                text: '组件',
+                link: '/code/components/intro',
+            }
+        ]
+    },
+    {
+        text: "高效工具",
+        items:[
+            {
+                text: '组件',
+                link: '/code/components/intro',
+            }
+        ]
     }
 ] as NavItem[]
 

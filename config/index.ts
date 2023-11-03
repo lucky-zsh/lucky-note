@@ -1,8 +1,9 @@
 import * as path from 'path';
-import { defineConfig } from 'rspress/config';
+import { UserConfig, defineConfig } from 'rspress/config';
 import { navList, sidebarConfig, socialLinks } from './route';
 const isDev = process.env.NODE_ENV === 'development' ? true : false;
 const publicPath = isDev ? '/' : '/lucky-note/';
+import { pluginPreview } from '@rspress/plugin-preview';
 export default defineConfig({
     root: path.join(__dirname, '../docs'),
     title: 'Lucky',
@@ -47,7 +48,6 @@ export default defineConfig({
 
         },
         tools: {
-
             babel (_, { addPlugins }) {
                 addPlugins([[
                     '@babel/plugin-transform-react-jsx',
@@ -66,8 +66,10 @@ export default defineConfig({
 
     },
     mediumZoom: true,
+
     logo: {
         light: "/lucky-icon.png",
         dark: "/lucky-icon.png",
-    }
-});
+    },
+    plugins:[pluginPreview()],
+} as UserConfig);
