@@ -1,11 +1,100 @@
 # Button组件设计
 
+Button 组件基本每个应用都会用到，写好一个button也是最基本，那如何来设计一个Button组件，针对不同的业务场景如何设计出符合设计的button,也是每个开发者必备的技能，下面就具体开始一个Button组件的开发
+
+## 1. 改造原生button 按钮
+
+我们看一下原生的button按钮，样式很丑，肯定是不符合我们的期许的，那我们后续就一点点来改造这个button按钮，当然这理因为被button全局样式污染，使用了`all: revert;`来恢复到浏览器默认的样式,接下来我们就一步步来改造button按钮：
+
+### 1. 禁用按钮样式
+
+> 浏览器有一部分自带的样式，可能会影响到我们的button按钮，所以针对这部分样式，我们需要将其禁用掉
+
+-   设置 `outline: none;` 去除按钮轮廓，详情可参考[outline 使用文档](https://developer.mozilla.org/en-US/docs/Web/CSS/outline)
+-   设置 `user-select: none;` 用户不可以选择文本, 详情可参考 [user-select 使用文档](https://developer.mozilla.org/zh-CN/docs/Web/CSS/user-select)
+-   设置 `touch-action: manipulation;` ,这个属性针对的是移动端，让浏览器只允许进行滚动和持续缩放操作，比如禁用双击缩放页面等，详情可参考 [touch-action 使用文档](https://developer.mozilla.org/zh-CN/docs/Web/CSS/touch-action)
+-   设置 `appearance: none;`,这个CSS 属性用于控制 UI 控件的基于操作系统主题的原生外观,通俗点说，就是一个div我想让它展示成button的样子，就设置`appearance:button;`
+    达到修改元素的默认的样式，改变元素的外观的效果,不过这个兼容性是有些问题，而且通常我们更喜欢去自定义样式，所以这个设置成node就可以了，详情可参考[appearance 使用文档](https://developer.mozilla.org/zh-CN/docs/Web/CSS/appearance)
+-   设置`text-transform: none;`是因为该属性可以指定将元素的文本大写。它可以用于使文本显示为全大写或全小写，也可单独对每一个单词进行操作，显然这个也不是我们想要的，所以我们设置成none详情可参考[text-transform 使用文档](https://developer.mozilla.org/zh-CN/docs/Web/CSS/appearance)
+-   设置 `cursor: pointer;` 用于设置光标的类型（如果有），在鼠标指针悬停在元素上时显示相应样式，详情可参考文档[cursor 使用文档](https://developer.mozilla.org/zh-CN/docs/Web/CSS/cursor)
+
+```css
+.button {
+    outline: none;
+    user-select: none;
+    touch-action: manipulation;
+    appearance: none;
+    text-transform: none;
+    cursor: pointer;
+}
+```
+
+### 2. 覆盖按钮样式
+
+> 经过上列步骤，只是做了优化，样式依然很丑，那下面就需要我们将button默认的样式覆盖掉了，这个可根据设计或是风格去编写样式代码，下列只是案例，大家可自由发挥
+
+```css
+.button {
+    border: 1px solid #dcdfe6;
+    background-color: transparent;
+    padding: 10px 20px;
+}
+```
+
+### 3. 重写按钮动作样式
+
+> 按钮样式被改了，但我们点击按钮，会有一些额外的效果，这个就需要一些伪类样式，下面我们就介绍一下用于按钮的一些伪类，如果来制作我们心仪的按钮效果
+
+-   active伪类,该伪类常用于a标签或是button标签，该伪类匹配被用户激活的元素。它让页面能在浏览器监测到激活时给出反馈。当用鼠标交互时，它代表的是用户按下按键和松开按键之间的时间 详情可参考[active 使用文档](https://developer.mozilla.org/zh-CN/docs/Web/CSS/:active)
+
+:::tip 注意
+在最早我们接触伪类就是a标签，为什么顺序是`:link—:visited—:hover—:active`,但你尝试写的时候为什么感觉又不太对，如果想详细了解请参考Css章节，在这里会为你介绍
+:::
+
+-   hover 伪类，设置鼠标悬停的效果，这个最常用就不赘述了
+-   focus伪类，当用户点击或轻触一个元素或使用键盘的 Tab 键选择它时，它会被触发
+-   focus-visible伪类，作用就是有效地根据用户的输入方式 (鼠标 vs 键盘) 展示不同形式的焦点，看到这个大家可能有点懵，可以参考我们文章介绍
+
+```css
+.button {
+    &:active {
+        border-color: #0958d9;
+    }
+    &:hover {
+        border-color: #4096ff;
+    }
+    &:focus {
+        border-color: #0958d9;
+        outline: none;
+    }
+    &:focus-visible {
+        outline: 4px solid #91caff;
+        outline-offset: 2px;
+    }
+}
+```
+
+### 4. 效果展示
+
+改到这里基本的button 样式基本就完成了，后续可能会根据设计做一些调整，但最基本的这些样式是基本不会做调整的。可以查看效果
+
+<code src='@/demos/button/style' />
+
+## 2. 按钮功能改造
+
+按钮的种类很多，又按钮组，又loding按钮，也有圆形的等，而我们的主旨是只注重功能，以方便扩展，那下面我们将按钮进行改造，制作通用的按钮
+
+### 2.1 添加disabled功能
+
+> 按钮自带的就又disabled,这里只要设置样式就可以了
+
+<code src='@/demos/button/disabled'></code>
+
 ```tsx
 import { KButton } from '@/ui/index';
-const demo = function(){
-    return <KButton></KButton>
-
-}
+const demo = function () {
+    return <KButton></KButton>;
+};
 
 export default demo;
 ```

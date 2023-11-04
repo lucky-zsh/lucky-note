@@ -6,10 +6,16 @@
     "trailingComma": "none",
     "overrides": [
         {
-          "files": "*.md",
+          "files":[ "*.md","*.mdx"],
           "options": {
             "proseWrap": "preserve"
           }
+        },
+        {
+            "files": ".prettierrc",
+            "options": {
+              "parser": "json"
+            }
         }
-      ]
+    ]
 }

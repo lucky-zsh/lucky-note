@@ -13,11 +13,5 @@
             "@/theme/*": ["./theme/*"]
         }
     },
-    "include": [
-        "./rspress.config.ts",
-        "docs/**/*",
-        "src/**/*",
-        "theme/**/*",
-        "types/**/*"
-    ]
+    "include": ["docs/**/*", "src/**/*", "theme/**/*", "types/**/*"]
 }

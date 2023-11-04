@@ -25,18 +25,29 @@ module.exports = {
     plugins: ['html', 'react', 'react-hooks', '@typescript-eslint', 'markdown'],
     overrides: [
         {
-            files: ['**/*.md',"**/*.mdx"],
+            files: ['**/*.md', "**/*.mdx"],
             processor: 'markdown/markdown'
         },
         {
             files: [
                 '**/*.md/*.ts',
-                '**/*.md/*.tsx',
+                '**//*.md/*.tsx',
                 '**/*.md/*.js',
-                '**/*.md/*.jsx'
+                '**/*.md/*.jsx',
+                '**/*.mdx/*.ts',
+                '**//*.mdx/*.tsx',
+                '**/*.mdx/*.js',
+                '**/*.mdx/*.jsx',
             ],
-            rules: {
-                'unused-imports/no-unused-imports': 0
+            parserOptions: {
+                ecmaFeatures: {
+                    impliedStrict: true,
+                },
+            },
+            globals: {
+                React: true,
+                ReactDOM: true,
+                mountNode: true,
             }
         }
     ],
@@ -54,7 +65,6 @@ module.exports = {
         ],
         'react-hooks/rules-of-hooks': 'error', // 检查 Hook 的规则
         'react-hooks/exhaustive-deps': 'warn', // 检查 effect 的依赖
-
         'react/no-deprecated': 0,
         'react/react-in-jsx-scope': 0,
         '@typescript-eslint/no-explicit-any': 0,

@@ -1,2 +1,9 @@
-*.yaml
-
+**/*.yml
+**/*.yaml
+.gitignore
+.gitattributes
+.prettierignore
+doc_build/
+**/*.png
+**/*.svg
+**/*.jpg

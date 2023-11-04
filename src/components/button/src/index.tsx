@@ -1,6 +1,5 @@
 import "./index.scss"
-const Button = function(){
-
+const Button = function () {
     return <div className="button">dddd</div>
 }
 

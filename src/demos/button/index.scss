@@ -1,0 +1,70 @@
+.button_native {
+    display: flex;
+    padding: 20px 0;
+    button {
+        all: revert;
+        margin-right: 20px;
+
+        &:nth-child(n + 2) {
+            outline: none;
+            user-select: none;
+            touch-action: manipulation;
+            appearance: none;
+            text-transform: none;
+            cursor: pointer;
+        }
+
+        &:nth-child(n + 3) {
+            border: 1px solid #dcdfe6;
+            background-color: transparent;
+            padding: 10px 20px;
+        }
+
+        &:nth-child(4) {
+            &:active {
+                border-color: #0958d9;
+            }
+            &:hover {
+                border-color: #4096ff;
+            }
+            &:focus {
+                border-color: #0958d9;
+                outline: none;
+            }
+            &:focus-visible {
+                outline: 4px solid #91caff;
+                outline-offset: 2px;
+            }
+        }
+    }
+}
+
+.button {
+    border: 1px solid #dcdfe6;
+    background-color: transparent;
+    padding: 10px 20px;
+    outline: none;
+    user-select: none;
+    touch-action: manipulation;
+    appearance: none;
+    text-transform: none;
+    cursor: pointer;
+    &:not(disabled):active {
+        border-color: #0958d9;
+    }
+    &:not(disabled):hover {
+        border-color: #4096ff;
+    }
+    &:focus {
+        border-color: #0958d9;
+        outline: none;
+    }
+    &:focus-visible {
+        outline: 4px solid #91caff;
+        outline-offset: 2px;
+    }
+}
+.button_disabled {
+    opacity: 0.68;
+    cursor: not-allowed;
+}

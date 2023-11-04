@@ -12,14 +12,14 @@ export default defineConfig({
         include: ["../docs/**/*", "../src/**/*"]
     },
     markdown: {
-        showLineNumbers: true,
+        showLineNumbers: true
     },
-    globalStyles: path.join(__dirname,'..', 'theme', 'index.css'),
+    globalStyles: path.join(__dirname, '..', 'theme', 'index.css'),
     themeConfig: {
         footer: {
-          message: '© 2023 ByteDance Inc. All Rights Reserved.',
+            message: '© 2023 ByteDance Inc. All Rights Reserved.',
         },
-        socialLinks:socialLinks,
+        socialLinks: socialLinks,
         nav: navList,
         sidebar: sidebarConfig,
         prevPageText: '上一篇',
@@ -32,9 +32,9 @@ export default defineConfig({
         output: {
             assetPrefix: publicPath,
             cssModules: {
-                auto: /theme((\\|\/).+)+\.scss$/,
+                auto: /(theme|demos)((\\|\/).+)+\.scss$/,
             },
-            cssModuleLocalIdentName: "t_[local]_[hash:6]",
+            cssModuleLocalIdentName: "k_[local]_[hash:6]",
             disableSvgr: false,
         },
 
@@ -42,6 +42,7 @@ export default defineConfig({
             alias: {
                 '@/assets': path.join(__dirname, '../assets'),
                 '@/theme': path.join(__dirname, '../theme'),
+                '@/demos': path.join(__dirname, '../src/demos'),
                 '@/ui': path.join(__dirname, '../src'),
                 '@/types': path.join(__dirname, '../types')
             },
@@ -71,5 +72,5 @@ export default defineConfig({
         light: "/lucky-icon.png",
         dark: "/lucky-icon.png",
     },
-    plugins:[pluginPreview()],
+    plugins: [pluginPreview()],
 } as UserConfig);
