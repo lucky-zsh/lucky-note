@@ -49,10 +49,10 @@
     appearance: none;
     text-transform: none;
     cursor: pointer;
-    &:not(disabled):active {
+    &:active {
         border-color: #0958d9;
     }
-    &:not(disabled):hover {
+    &:not(:local(.button_disabled)):hover {
         border-color: #4096ff;
     }
     &:focus {
