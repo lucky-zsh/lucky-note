@@ -39,6 +39,13 @@
     }
 }
 
+.wrapper{
+    display: flex;
+    padding: 20px 0;
+    :local(.button){
+        margin-right: 20px;
+    }
+}
 .button {
     border: 1px solid #dcdfe6;
     background-color: transparent;
@@ -49,17 +56,17 @@
     appearance: none;
     text-transform: none;
     cursor: pointer;
-    &:active {
+    &:not(:local(.button_disabled)):active {
         border-color: #0958d9;
     }
     &:not(:local(.button_disabled)):hover {
         border-color: #4096ff;
     }
-    &:focus {
+    &:not(:local(.button_disabled)):focus {
         border-color: #0958d9;
         outline: none;
     }
-    &:focus-visible {
+    &:not(:local(.button_disabled)):focus-visible {
         outline: 4px solid #91caff;
         outline-offset: 2px;
     }
@@ -67,4 +74,8 @@
 .button_disabled {
     opacity: 0.68;
     cursor: not-allowed;
+}
+.button_text {
+    border: 0 solid transparent;
+    background-color: transparent;
 }

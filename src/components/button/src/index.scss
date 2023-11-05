@@ -1,5 +1,36 @@
-.button {
-    width: 200px;
-    height: 100px;
-    background-color: red;
+.kbutton {
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    padding: 10px 15px;
+    border: 1px solid #d9d9d9;
+    appearance: none;
+    outline: 0 none;
+    background-color: #fff;
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+    transition: 0.1s;
+    touch-action: manipulation;
+    -webkit-font-smoothing: auto;
+}
+.kbutton_disabled {
+    opacity: 0.68;
+    cursor: not-allowed;
+}
+
+.kbutton_text {
+    border: 0 solid transparent;
+    background-color: transparent;
+}
+
+.kbutton_link {
+    border-color: transparent;
+    height: auto;
+    background: transparent;
+    color: #409eff;
 }

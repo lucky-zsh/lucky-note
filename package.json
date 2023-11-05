@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
-        "dev": "cross-env NODE_ENV=development rspress dev --config config/index.ts",
+        "dev": "cross-env NODE_ENV=development rspress dev",
         "build": "cross-env NODE_ENV=production rspress build",
         "preview": "rspress preview"
     },

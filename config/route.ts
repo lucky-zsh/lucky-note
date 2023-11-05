@@ -18,6 +18,10 @@ export const navList = [
             {
                 text: "版本库",
                 link: "/notes/version/git/theory",
+            },
+            {
+                text: "CSS",
+                link: "/notes/css/module/config",
             }
         ]
     },
@@ -60,6 +64,15 @@ export const sidebarConfig:Sidebar = {
             ],
         }
     ],
+    "/notes/css":[
+        {
+            text: "CSS Module",
+            items: [
+              "/notes/css/module/config",
+              "/notes/css/module/usage"
+            ],
+        }
+    ],
     "/code/components":[
         {
             text: "介绍",
@@ -70,6 +83,13 @@ export const sidebarConfig:Sidebar = {
             items: [
               "/code/components/button/usage",
               "/code/components/button/design"
+            ],
+        },
+        {
+            text: "Grid",
+            items: [
+              "/code/components/grid/usage",
+              "/code/components/grid/design"
             ],
         }
     ]

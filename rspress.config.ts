@@ -32,7 +32,7 @@ export default defineConfig({
             cssModules: {
                 auto: /(theme|demos)((\\|\/).+)+\.scss$/,
             },
-            cssModuleLocalIdentName: "t_[local]_[hash:6]",
+            cssModuleLocalIdentName: "k[local]_[hash:6]",
             disableSvgr: false,
         },
 
