@@ -4,7 +4,7 @@ export const frontmatter = {
 };
 
 
-const Note = function(){
+const Note = function () {
     return (
         <div>note</div>
     )
